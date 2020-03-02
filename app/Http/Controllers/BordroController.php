@@ -13,7 +13,7 @@ class BordroController extends Controller
 {
     public function index()
     {
-        ARGBRDMAIL::whereNull('OKUNDU')
+        ARGBRDMAIL::where('GONDER', 0)
                     ->get()
                     ->each(function ($bordro) {
                         if ($bordro->EPOSTA && (filter_var($bordro->EPOSTA, FILTER_VALIDATE_EMAIL))) {
@@ -30,7 +30,8 @@ class BordroController extends Controller
 
         $bordro->update([
             'OKUNDU' => Carbon::now()->format('Ymd H.i.s'),
-            'IP'     => Request::ip()
+            'IP'     => Request::ip(),
+            'GONDER' => 1
         ]);
 
         return Response::download($bordro->PDF);
