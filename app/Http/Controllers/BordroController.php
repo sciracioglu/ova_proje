@@ -32,6 +32,19 @@ class BordroController extends Controller
             'GONDER' => 1
         ]);
 
-        return Response::download(ARGBRDMAIL::find($id)->PDF, 'Bordro', ['content-type' => 'application/pdf']);
+        $filename = ARGBRDMAIL::find($id)->PDF;
+        $fparts   = pathinfo($filename);
+
+        return Response::stream(function () use ($filename) {
+            // grab the raw file and echo it out
+            echo file_get_contents($filename);
+        }, 200, [
+            // other headers could be added
+            'Cache-Control'       => 'must-revalidate, post-check=0, pre-check=0',
+            'Content-Description' => 'File Download of ' . $fparts['basename'],
+            'Content-Disposition' => 'attachment; filename=' . $fparts['basename'],
+            'Expires'             => '0',
+            'Pragma'              => 'public'
+        ]);
     }
 }
