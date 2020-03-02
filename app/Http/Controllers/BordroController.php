@@ -26,7 +26,7 @@ class BordroController extends Controller
         ARGBRDMAIL::find($id)
                     ->update([
             'OKUNDU' => Carbon::now()->format('Y-m-d H:i:s'),
-            'IP'     => request()->getClientIp(),
+            'IP'     => request()->ip(),
             'GONDER' => 1
         ]);
 
