@@ -25,13 +25,13 @@ class BordroController extends Controller
 
     public function show($id)
     {
-        ARGBRDMAIL::where('UID', $id)
+        ARGBRDMAIL::find($id)
                     ->update([
             'OKUNDU' => Carbon::now()->format('Y-m-d H:i:s'),
             'IP'     => Request::ip(),
             'GONDER' => 1
         ]);
 
-        return Response::download(ARGBRDMAIL::where('UID', $id)->first());
+        return Response::download(ARGBRDMAIL::find($id)->PDF);
     }
 }
