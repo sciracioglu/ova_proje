@@ -37,12 +37,6 @@ class BordroController extends Controller
 
         return Response::stream(function () use ($filename) {
             echo file_get_contents($filename);
-        }, 200, [
-            // other headers could be added
-            'Cache-Control'       => 'must-revalidate, post-check=0, pre-check=0',
-            'Content-Disposition' => 'attachment; filename=Bordro',
-            'Expires'             => '0',
-            'Pragma'              => 'public'
-        ]);
+        }, 200, ['content-type' => 'application/pdf']);
     }
 }
