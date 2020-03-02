@@ -36,13 +36,11 @@ class BordroController extends Controller
         $fparts   = pathinfo($filename);
 
         return Response::stream(function () use ($filename) {
-            // grab the raw file and echo it out
             echo file_get_contents($filename);
         }, 200, [
             // other headers could be added
             'Cache-Control'       => 'must-revalidate, post-check=0, pre-check=0',
-            'Content-Description' => 'File Download of ' . $fparts['basename'],
-            'Content-Disposition' => 'attachment; filename=' . $fparts['basename'],
+            'Content-Disposition' => 'attachment; filename=Bordro',
             'Expires'             => '0',
             'Pragma'              => 'public'
         ]);
