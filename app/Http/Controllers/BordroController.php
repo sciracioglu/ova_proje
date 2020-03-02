@@ -31,6 +31,9 @@ class BordroController extends Controller
         ]);
 
         $filename = ARGBRDMAIL::find($id)->PDF;
-        return response()->download($filename);
+
+        return response()->make(ARGBRDMAIL::find($id)->PDF, 200, [
+            'Content-Type' => 'application/pdf'
+        ]);
     }
 }
