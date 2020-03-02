@@ -6,8 +6,6 @@ use Illuminate\Support\Facades\Mail;
 use App\ARGBRDMAIL;
 use App\Mail\BordroMail;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Response;
 
 class BordroController extends Controller
 {
@@ -28,14 +26,12 @@ class BordroController extends Controller
         ARGBRDMAIL::find($id)
                     ->update([
             'OKUNDU' => Carbon::now()->format('Y-m-d H:i:s'),
-            'IP'     => Request::ip(),
+            'IP'     => request()->getClientIp(),
             'GONDER' => 1
         ]);
 
         $filename = ARGBRDMAIL::find($id)->PDF;
-        $fparts   = pathinfo($filename);
-
-        return Response::stream(function () use ($filename) {
+        return response()->stream(function () use ($filename) {
             echo file_get_contents($filename);
         }, 200, ['content-type' => 'application/pdf']);
     }
