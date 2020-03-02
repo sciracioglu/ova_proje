@@ -8,4 +8,5 @@ class ARGBRDMAIL extends Model
 {
     protected $table      = 'ARGBRDMAIL';
     protected $connection = 'personel';
+    protected $guarded    = [];
 }
