@@ -47,7 +47,7 @@ return [
             'charset'  => 'utf8',
             'prefix'   => '',
         ],
-        'sqlsrv' => [
+        'personel' => [
             'driver'   => 'sqlsrv',
             'host'     => env('DB_HOST', 'localhost'),
             'port'     => env('DB_PORT', '1433'),
