@@ -35,8 +35,6 @@ class BordroController extends Controller
             echo file_get_contents($filename);
         }, 200, ['content-type' => 'application/pdf',
         'Cache-Control'         => 'must-revalidate, post-check=0, pre-check=0',
-        'Content-Description'   => 'File Download of Bordro.pdf',
-        'Content-Disposition'   => 'attachment; filename=Bordro.pdf',
         'Expires'               => '0',
         'Pragma'                => 'public']);
     }
