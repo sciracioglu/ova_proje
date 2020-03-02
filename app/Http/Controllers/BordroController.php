@@ -32,6 +32,6 @@ class BordroController extends Controller
             'GONDER' => 1
         ]);
 
-        return Response::download(ARGBRDMAIL::find($id)->PDF);
+        return Response::download(ARGBRDMAIL::find($id)->PDF, 'Bordro', ['content-type' => 'application/pdf']);
     }
 }
