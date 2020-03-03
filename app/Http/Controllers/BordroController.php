@@ -17,24 +17,24 @@ class BordroController extends Controller
                         if ($bordro->EPOSTA && (filter_var($bordro->EPOSTA, FILTER_VALIDATE_EMAIL))) {
                             Mail::to($bordro->EPOSTA)
                                     ->send(new BordroMail($bordro));
-
-                            ARGBRDMAIL::find($bordro->UID)
-                                    ->update(['GONDER'=>1]);
+                            $bordro->update(['GONDER' => 1]);
+                            // ARGBRDMAIL::where('UID', $bordro->UID)
+                            //         ->update(['GONDER' => 1]);
                         }
                     });
     }
 
     public function show($id)
     {
-        ARGBRDMAIL::find($id)
+        ARGBRDMAIL::where('UID', $id)
                     ->update([
-            'OKUNDU' => Carbon::now()->format('Y-m-d H:i:s'),
-            'IP'     => request()->ip(),
-        ]);
+                        'OKUNDU' => Carbon::now()->format('Y-m-d H:i:s'),
+                        'IP' => request()->ip(),
+                    ]);
 
-        $filename = ARGBRDMAIL::find($id)->PDF;
+        $filename = ARGBRDMAIL::where('UID', $id)->first()->PDF;
 
-        return response()->make(ARGBRDMAIL::find($id)->PDF, 200, [
+        return response()->make(ARGBRDMAIL::where('UID', $id)->first()->PDF, 200, [
             'Content-Type' => 'application/pdf'
         ]);
     }
