@@ -32,8 +32,6 @@ class BordroController extends Controller
                         'IP' => request()->ip(),
                     ]);
 
-        $filename = ARGBRDMAIL::where('UID', $id)->first()->PDF;
-
         return response()->make(ARGBRDMAIL::where('UID', $id)->first()->PDF, 200, [
             'Content-Type' => 'application/pdf'
         ]);
