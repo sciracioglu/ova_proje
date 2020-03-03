@@ -10,4 +10,5 @@ class ARGBRDMAIL extends Model
     protected $connection = 'personel';
     protected $guarded = [];
     public $timestamps = false;
+    protected $primaryKey = 'UID';
 }
