@@ -17,6 +17,9 @@ class BordroController extends Controller
                         if ($bordro->EPOSTA && (filter_var($bordro->EPOSTA, FILTER_VALIDATE_EMAIL))) {
                             Mail::to($bordro->EPOSTA)
                                     ->send(new BordroMail($bordro));
+
+                            ARGBRDMAIL::find($bordro->UID)
+                                    ->update(['GONDER'=>1]);
                         }
                     });
     }
@@ -27,7 +30,6 @@ class BordroController extends Controller
                     ->update([
             'OKUNDU' => Carbon::now()->format('Y-m-d H:i:s'),
             'IP'     => request()->ip(),
-            'GONDER' => 1
         ]);
 
         $filename = ARGBRDMAIL::find($id)->PDF;
