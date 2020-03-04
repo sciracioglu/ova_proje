@@ -106,13 +106,18 @@
 			 <img src="{{ $message->embed(public_path().'/img/019.png') }}" height="80" style="height:80px;">
 			<hr/>
             <h3>
-                Sayın {{ $data->ADI }} {{ $data->SOYADI }},
+                Sayın {{ $data['ADI'] .' '. $data['SOYADI'] }},
             </h3>
 
             <p>
-				{{ $data->BORDRO_YIL }} yılı, {{ $data->BORDRO_AY}}. Ay bordronuz için aşağıdaki düğmeye basınız.
+				{{ $data['BORDRO_YIL'] }} yılı, {{ $data['BORDRO_AY'] }}. Ay bordronuz için aşağıdaki düğmeye basınız.
             </p>
-
+			<p>
+				UID 1 : {{ $data['UID'] }}
+            </p>
+			<p>
+				UID 2 : {{ $uid }}
+            </p>
 
 			<a href="http://95.9.95.54:84/bordro-goster?uid={{ $uid }}">
                 Bordro
