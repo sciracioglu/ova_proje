@@ -19,7 +19,7 @@ class BordroController extends Controller
                             $uid = (string)$bordro->UID;
                             Mail::to($bordro->EPOSTA)
                                     ->send(new BordroMail($bordro, $uid));
-                            $bordro->update(['GONDER' => 1]);
+                            ARGBRDMAIL::where('UID', $uid)->update(['GONDER' => 1]);
                         }
                     };
     }
