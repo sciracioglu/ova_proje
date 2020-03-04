@@ -30,13 +30,14 @@ class BordroController extends Controller
             return [];
         }
         $id = (string)request('uid');
+
         ARGBRDMAIL::where('UID', $id)
                     ->update([
                         'OKUNDU' => Carbon::now()->format('Y-m-d H:i:s'),
                         'IP' => request()->ip(),
                     ]);
 
-        return response()->make(ARGBRDMAIL::where('UID', $id)->first()->PDF, 200, [
+        return response()->make(DB::connection('personel')->select('SELECT * FROM dbo.ARGBRDMAIL WHERE UID = ?', [$id])[0]->PDF, 200, [
             'Content-Type' => 'application/pdf'
         ]);
     }
