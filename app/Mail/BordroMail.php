@@ -18,7 +18,7 @@ class BordroMail extends Mailable
      *
      * @return void
      */
-    public function __construct($data, $uid)
+    public function __construct($data, string $uid)
     {
         $this->data = $data;
         $this->uid = $uid;
