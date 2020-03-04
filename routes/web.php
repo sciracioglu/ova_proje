@@ -23,4 +23,4 @@ Route::get('bakiye_onay/{id}', 'BakiyeController@store');
 Route::get('bakiye_mektup/{id}', 'BakiyeController@download');
 
 Route::get('bordro', 'BordroController@index');
-Route::get('bordro/{id}', 'BordroController@show');
+Route::get('bordro-goster', 'BordroController@show');
