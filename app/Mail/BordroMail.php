@@ -11,15 +11,17 @@ class BordroMail extends Mailable
     use Queueable, SerializesModels;
 
     public $data;
+    public $uid;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct($data, $uid)
     {
         $this->data = $data;
+        $this->uid = $uid;
     }
 
     /**
