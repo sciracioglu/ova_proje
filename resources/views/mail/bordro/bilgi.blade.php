@@ -112,12 +112,6 @@
             <p>
 				{{ $data->BORDRO_YIL }} yılı, {{ $data->BORDRO_AY }}. Ay bordronuz için aşağıdaki düğmeye basınız.
             </p>
-			<p>
-				UID 1 : {{ $data->UID }}
-            </p>
-			<p>
-				UID 2 : {{ $uid }}
-            </p>
 
 			<a href="http://95.9.95.54:84/bordro/{{ $uid }}">
                 Bordro
