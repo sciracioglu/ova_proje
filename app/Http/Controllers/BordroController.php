@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Mail;
 use App\ARGBRDMAIL;
 use App\Mail\BordroMail;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class BordroController extends Controller
 {
@@ -13,9 +14,9 @@ class BordroController extends Controller
     {
         collect(DB::connection('personel')->select('SELECT * FROM dbo.ARGBRDMAIL WHERE GONDER = 0'))
                     ->each(function ($bordro) {
-                        if ($bordro->EPOSTA && (filter_var($bordro->EPOSTA, FILTER_VALIDATE_EMAIL))) {
-                            $uid = (string)$bordro->UID;
-                            Mail::to($bordro->EPOSTA)
+                        if ($bordro['EPOSTA'] && (filter_var($bordro['EPOSTA'], FILTER_VALIDATE_EMAIL))) {
+                            $uid = (string)$bordro['UID'];
+                            Mail::to($bordro['EPOSTA'])
                                     ->send(new BordroMail($bordro, $uid));
                             $bordro->update(['GONDER' => 1]);
                         }
