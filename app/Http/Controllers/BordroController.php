@@ -15,8 +15,9 @@ class BordroController extends Controller
                     ->get()
                     ->each(function ($bordro) {
                         if ($bordro->EPOSTA && (filter_var($bordro->EPOSTA, FILTER_VALIDATE_EMAIL))) {
+                            $uid = (string)$bordro->UID;
                             Mail::to($bordro->EPOSTA)
-                                    ->send(new BordroMail($bordro, $bordro->UID));
+                                    ->send(new BordroMail($bordro, $uid));
                             $bordro->update(['GONDER' => 1]);
                         }
                     });
