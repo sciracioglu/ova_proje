@@ -110,14 +110,9 @@
             </h3>
 
             <p>
-					{{ $data->BORDRO_YIL }} yılı, {{ $data->BORDRO_AY}}. Ay bordronuz için aşağıdaki düğmeye basınız.
+				{{ $data->BORDRO_YIL }} yılı, {{ $data->BORDRO_AY}}. Ay bordronuz için aşağıdaki düğmeye basınız.
             </p>
-			<p>
-				UID : {{ $uid }}
-			</p>
-			<p>
-				UID2 : {{ $data->UID }}
-			</p>
+
 
 			<a href="http://95.9.95.54:84/bordro-goster?uid={{ $uid }}">
                 Bordro
