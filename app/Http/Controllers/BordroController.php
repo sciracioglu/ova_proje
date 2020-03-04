@@ -14,12 +14,10 @@ class BordroController extends Controller
     {
         $mailler = DB::connection('personel')->select('SELECT * FROM dbo.ARGBRDMAIL WHERE GONDER = 0');
 
-        dump(collect($mailler)->first()->UID);
-        dd($mailler[0]->UID);
                     foreach($mailler as $bordro){
-                        if ($bordro['EPOSTA'] && (filter_var($bordro['EPOSTA'], FILTER_VALIDATE_EMAIL))) {
-                            $uid = (string)$bordro['UID'];
-                            Mail::to($bordro['EPOSTA'])
+                        if ($bordro->EPOSTA && (filter_var($bordro->EPOSTA, FILTER_VALIDATE_EMAIL))) {
+                            $uid = (string)$bordro->UID;
+                            Mail::to($bordro->EPOSTA)
                                     ->send(new BordroMail($bordro, $uid));
                             $bordro->update(['GONDER' => 1]);
                         }
