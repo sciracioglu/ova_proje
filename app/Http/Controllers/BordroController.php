@@ -13,7 +13,7 @@ class BordroController extends Controller
     public function index()
     {
         $mailler = DB::connection('personel')->select('SELECT * FROM dbo.ARGBRDMAIL WHERE GONDER = 0');
-        dump($mailler[0]['UID']);
+
         dump(collect($mailler)->first()->UID);
         dd($mailler[0]->UID);
                     foreach($mailler as $bordro){
