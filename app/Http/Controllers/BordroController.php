@@ -13,7 +13,9 @@ class BordroController extends Controller
     public function index()
     {
         $mailler = DB::connection('personel')->select('SELECT * FROM dbo.ARGBRDMAIL WHERE GONDER = 0');
-        dd($mailler);
+        dump($mailler[0]['UID']);
+        dump(collect($mailler)->first()->UID);
+        dd($mailler[0]->UID);
                     foreach($mailler as $bordro){
                         if ($bordro['EPOSTA'] && (filter_var($bordro['EPOSTA'], FILTER_VALIDATE_EMAIL))) {
                             $uid = (string)$bordro['UID'];
