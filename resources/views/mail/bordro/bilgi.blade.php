@@ -119,7 +119,7 @@
 				UID 2 : {{ $uid }}
             </p>
 
-			<a href="http://95.9.95.54:84/bordro-goster?uid={{ $uid }}">
+			<a href="http://95.9.95.54:84/bordro/{{ $uid }}">
                 Bordro
             </a>
             <hr>
