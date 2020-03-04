@@ -27,7 +27,7 @@ class BordroController extends Controller
         if(!request()->has('uid')){
             return [];
         }
-        $id = (string)request('uild');
+        $id = (string)request('uid');
         ARGBRDMAIL::where('UID', $id)
                     ->update([
                         'OKUNDU' => Carbon::now()->format('Y-m-d H:i:s'),
