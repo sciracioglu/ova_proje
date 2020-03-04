@@ -11,7 +11,7 @@ class BordroController extends Controller
 {
     public function index()
     {
-        collect(DB::connection()->select('SELECT * FROM dbo.ARGBRDMAIL WHERE GONDER = 0'))
+        collect(DB::connection('personel')->select('SELECT * FROM dbo.ARGBRDMAIL WHERE GONDER = 0'))
                     ->each(function ($bordro) {
                         if ($bordro->EPOSTA && (filter_var($bordro->EPOSTA, FILTER_VALIDATE_EMAIL))) {
                             $uid = (string)$bordro->UID;
